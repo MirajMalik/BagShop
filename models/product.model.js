@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 
-mongoose.connect("mongodb://127.0.0.1:27017/bagshop");
 
 const productSchema = new mongoose.Schema({
     image: String,
@@ -18,6 +17,4 @@ const productSchema = new mongoose.Schema({
     textColor: String,
 });
 
-const productModel = mongoose.model("Product", productSchema);
-
-module.exports = productModel
+module.exports = mongoose.model("Product", productSchema);

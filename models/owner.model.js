@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
-const userSchema = new mongoose.Schema({
+
+const ownerSchema = new mongoose.Schema({
     fullname: {
         type: String,
         required: [true, "Fullname need to be provided"],
@@ -13,12 +14,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: [true, "Password need to be provided"],
     },
-    cart: {
-        type: Array,
-        default: [],
-    },
-    isAdmin: Boolean,
-    orders: {
+    products: {
         type: Array,
         default: [],
     },
@@ -27,5 +23,4 @@ const userSchema = new mongoose.Schema({
 
 });
 
-module.exports = mongoose.model("User", userSchema);
-
+module.exports = mongoose.model('Owner',ownerSchema);
