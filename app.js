@@ -7,6 +7,7 @@ const path = require('path');
 const ownersRouter = require('./routes/ownersRouter');
 const usersRouter = require('./routes/usersRouter');
 const productsRouter = require('./routes/productsRouter');
+const indexRouter = require('./routes/index');
 
 
 // setup
@@ -18,6 +19,7 @@ app.set('view engine', 'ejs');
 
 
 // apis
+app.use('/', indexRouter)
 app.use('/owners', ownersRouter);
 app.use('/users', usersRouter);
 app.use('/products', productsRouter);
