@@ -1,4 +1,4 @@
-<%- include('./partials/header') %>
+<%- include('./common/header.ejs') %>
     <div class="w-full h-screen flex items-start px-20 py-20">
         <div class="w-[25%] flex h-screen flex-col items-start">
             <div class="flex items-center gap-2">
@@ -24,18 +24,22 @@
         <div class="w-[75%] flex flex-col gap-5 h-screen">
             <div class="flex items-start gap-5">
                 <% products.forEach(function(product){ %>
-                    <div class="w-60">
-                        <div class="w-full h-52 flex items-center justify-center bg-[<%= product.bgcolor %>]">
-                            <img class="h-[12rem]" src="data:image/jpeg;base64,<%= product.image.toString('base64') %>"
-                                alt="">
+                    <div class="w-60" style="background-color: <%= product.bgColor %>;">
+
+                        <!--image-->
+                        <div class="w-full h-52 overflow-hidden flex items-center justify-center" style="background-color: <%= product.bgColor %>;">
+                            <img 
+                                class="w-full h-full object-cover" 
+                                src="data:image/jpeg;base64,<%= product.image.toString('base64') %>" 
+                                alt="<%= product.name %>">
                         </div>
-                        <div
-                            class="flex justify-between bg-[<%= product.panelcolor %>] items-center px-4 py-4 text-[<%= product.textcolor %>]">
+                        <div class="flex justify-between items-center px-4 py-4"
+                             style="background-color: <%= product.panelColor %>; color: <%= product.textColor %>;">
                             <div>
                                 <h3>
                                     <%= product.name %>
                                 </h3>
-                                <h4>₹ <%= product.price %>
+                                <h4>$ <%= product.price %>
                                 </h4>
                             </div>
                             <a class="w-7 h-7 flex items-center justify-center rounded-full bg-white" href="">
@@ -47,4 +51,4 @@
             </div>
         </div>
     </div>
-    <%- include('./partials/footer') %>
+    <%- include('./common/footer') %>

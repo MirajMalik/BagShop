@@ -1,6 +1,6 @@
 const userModel = require("../models/user.model");
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
+// const jwt = require('jsonwebtoken');
 const generateToken = require('../utils/generateToken');
 
 
@@ -54,4 +54,43 @@ const registerUser = async function (req,res) {
    
 };
 
-module.exports = {registerUser};
+
+const loginUser = async function (req,res) {
+    
+    try {
+        let { email, password } = req.body;
+        if(!email || !password) {
+            return res.status(400).json({ message: 'credentials are required' });
+        }
+
+        let user = await userModel.findOne({ email: email });
+
+        if(!user) {
+            return res.status(401).json({ message: 'Email or Password is incorrect' });
+        }
+
+        let hashedPassword = user.password;
+        
+        bcrypt.compare( password, hashedPassword, function (err, result) {
+            if(result) {
+                let token = generateToken(user);
+                res.cookie('token', token);
+                res.redirect('/shop');
+            } else {
+                return res.status(401).json({ message: 'Email or Password is incorrect' });
+            }
+        })
+        
+    } catch(err) {
+        res.status(500).json({ message: err.message });
+    }
+   
+};
+
+const logoutUser = function (req,res) {
+    res.cookie("token", "");
+    res.render('index');
+};
+
+
+module.exports = {registerUser, loginUser, logoutUser};

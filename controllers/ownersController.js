@@ -1,8 +1,9 @@
 const ownerModel = require('../models/owner.model');
 
-const getOwner = function (req,res) {
-    res.send("Retrieving Owner");
-}
+const adminPanel = function (req,res) {
+   let success = req.flash("success");
+   res.render("createProducts", { success} );
+};
 
 const createOwner = async function (req,res) {
     let existedOwner = await ownerModel.find();
@@ -26,6 +27,6 @@ const createOwner = async function (req,res) {
 
 
 module.exports = {
-getOwner, 
+adminPanel, 
 createOwner,
 };

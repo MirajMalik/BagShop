@@ -1,4 +1,4 @@
-<%- include('./partials/header') %>
+<%- include('./common/header.ejs') %>
 
     <% if(success.length>0){ %>
         <div class="absolute top-5 left-1/2 -translate-x-1/2 -translate-y-1/2 p-3 rounded-md bg-blue-500">
@@ -38,11 +38,11 @@
                             <div>
                                 <h3 class="text-lg font-semibold mb-2">Panel Details</h3>
                                 <div class="grid grid-cols-2 gap-4">
-                                    <input name="bgcolor" type="text" placeholder="Background Color"
+                                    <input name="bgColor" type="color" placeholder="Background Color"
                                         class="border p-2 rounded w-full">
-                                    <input name="panelcolor" type="text" placeholder="Panel Color"
+                                    <input name="panelColor" type="color" placeholder="Panel Color"
                                         class="border p-2 rounded w-full">
-                                    <input name="textcolor" type="text" placeholder="Text Color"
+                                    <input name="textColor" type="color" placeholder="Text Color"
                                         class="border p-2 rounded w-full">
                                 </div>
                             </div>
@@ -52,4 +52,4 @@
                     </main>
                 </div>
             </div>
-            <%- include('./partials/footer') %>
+            <%- include('./common/footer') %>

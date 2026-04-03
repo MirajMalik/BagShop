@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 
 const productSchema = new mongoose.Schema({
-    image: String,
+    image: Buffer,
     name: {
         type: String,
         required: [true, "Fullname need to be provided"],
