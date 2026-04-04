@@ -15,10 +15,12 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: [ true, 'Password is required' ],
     },
-    cart: {
-        type: Array,
-        default: [],
-    },
+    cart: [
+        {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Product",
+        }
+    ],
     orders: {
         type: Array,
         default: [],
