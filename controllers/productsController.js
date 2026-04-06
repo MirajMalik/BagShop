@@ -9,7 +9,7 @@ const getproducts = function (req,res) {
 const createproducts = async function (req,res) {
     try {
         let { name, price, discount, bgColor, panelColor, textColor } = req.body;
-        console.log(`bgcolor: ${bgColor}`);
+        // console.log(`bgcolor: ${bgColor}`);
 
         let product = await productModel.create({
             image: req.file.buffer,
@@ -21,7 +21,7 @@ const createproducts = async function (req,res) {
             textColor,
         });
 
-        console.log(product);
+        // console.log(product);
 
         req.flash("success", "Products created succefully.");
         res.redirect("/owners/admin");

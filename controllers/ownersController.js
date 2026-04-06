@@ -2,8 +2,17 @@ const ownerModel = require('../models/owner.model');
 
 const adminPanel = function (req,res) {
    let success = req.flash("success");
-   res.render("createProducts", { success} );
+   res.render("admin", { success, user: req.user });
 };
+
+
+const createProducts = function (req,res) {
+   let success = req.flash("success");
+   console.log(req.user);
+   res.render("createProducts", { success, user: req.user });
+};
+
+
 
 const createOwner = async function (req,res) {
     let existedOwner = await ownerModel.find();
@@ -29,4 +38,5 @@ const createOwner = async function (req,res) {
 module.exports = {
 adminPanel, 
 createOwner,
+createProducts
 };

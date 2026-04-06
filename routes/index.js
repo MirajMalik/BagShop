@@ -12,7 +12,6 @@ router.get("/", (req,res) => {
 router.get("/shop", isloggedIn, async (req,res) => {
     let products = await productModel.find();
     let success = req.flash('success');
-    console.log(products[0]);
     res.render("shop", {products : products, success: success});
 });
 
@@ -23,13 +22,10 @@ router.get("/cart", isloggedIn, async (req,res) => {
 
     let bill = Number(user.cart[0].price + 20)-Number(user.cart[0].discount);
     
-
-
     res.render("cart", { user : user , bill: bill });
 });
 
 router.get("/addtocart/:productid", isloggedIn, async (req,res) => {
-    console.log(req.user);
     let user = await userModel.findOne({ email: req.user.email });
     user.cart.push(req.params.productid);
     await user.save();
